@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<h1 class="display-1 text-center">All Pets</h1>
+<div class="row">
+    {% for pet in pets %}
+    <div class="col-3">
+        {% if pet.photo_url %}
+        <img class="img-thumbnail" src="{{pet.photo_url}}">
+        {% else %}
+        <img class="img-thumbnail" src="https://static.thenounproject.com/png/1554489-200.png">
+        {% endif %}
+        <p>
+            <a href="/{{pet.id}}">{{pet.name}}</a> is {% if pet.available is sameas true %}<b>available!</b>{% else %} not available{% endif %}
+        </p>
+    </div>
+    {% endfor %}
+</div>
+<div class="text-center">
+    <a href="/add" role="button" class="btn btn-primary">Add Pet!</a>
+</div>
+{% endblock %}
